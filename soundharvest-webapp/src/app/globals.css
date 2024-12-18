@@ -2,20 +2,121 @@
 @tailwind components;
 @tailwind utilities;
 
+/****************** Root ******************/
+* {
+  margin: 0;
+  padding: 0;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --easing-smooth: cubic-bezier(0.19, 1, 0.22, 1);
+  --red: #EA445A;
+  --background: #191a28;
+  --foreground: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #191a28;
+    --foreground: #fff;
   }
 }
 
 body {
+  font-family: 'Sarabun', sans-serif;
+  line-height: 1.6;
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  padding-bottom: 60px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/****************** Layout ******************/
+aside {
+  position: fixed;
+  z-index: 1;
+  width: 260px;
+  flex-shrink: 0;
+  height: 100vh;
+  border-right: 1px solid #353642;
+  background-color: #191a28;
+  overflow-y: auto;
+
+  @media screen and (max-width: 768px) {
+    left: -260px;
+  }
+}
+
+section {
+  flex-grow: 1;
+}
+
+/****************** Html Tags ******************/
+img {
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+/****************** Components - Sidebar ******************/
+.sidebar {
+  padding-top: 52px;
+  padding-left: 50px;
+  color: rgb(255, 255, 255, 0.5);
+}
+
+.category {
+  margin-bottom: 40px;
+}
+
+.title {
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.sidebar li {
+  margin-bottom: 15px;
+}
+
+.sidebar li:not(.is-active) .link {
+  cursor: not-allowed;
+}
+
+.link {
+  display: inline-flex;
+  padding: 3px 15px 4px;
+  margin-left: -15px;
+  border-radius: 16px;
+  color: #8C8D94;
+  text-decoration: none;
+  outline: none;
+  transition: color 0.12s, background-color 0.2s;
+}
+
+.link:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+svg {
+  width: 14px;
+  height: auto;
+  margin-right: 8px;
+}
+
+.icon {
+  fill: #8C8D94;
+}
+
+.link:hover, .is-active {
+  color: var(--red);
+}
+
+.link:hover .icon {
+  fill: var(--red);
+}
+
